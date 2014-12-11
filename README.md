@@ -17,13 +17,13 @@ npm install -g ionic gulp
 Clone (or fork) this repo:
 
 ```bash
-git clone https://github.com/joshnuss/ionic-side-menu-plus.git <your-project-name>
+git clone https://github.com/joshnuss/ionic-sidemenu-plus.git <your-project-name>
 cd <your-project-name>
 ```
 
-Start development server/Test in browser:
+Development mode:
 
-With Livereload support
+Run gulp and ionic server
 
 ```bash
 gulp watch
@@ -46,3 +46,11 @@ Build:
 ionic build android
 ionic build ios
 ```
+
+## by Joshua Nussbaum
+
+Software consultant available for hire. joshnuss at gmail.com
+
+## License
+
+MIT
