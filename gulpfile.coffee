@@ -1,25 +1,33 @@
-gulp      = require("gulp")
-gutil     = require("gulp-util")
-bower     = require("bower")
-concat    = require("gulp-concat")
-sass      = require("gulp-sass")
-minifyCss = require("gulp-minify-css")
-rename    = require("gulp-rename")
-sh        = require("shelljs")
+gulp       = require("gulp")
+gutil      = require("gulp-util")
+concat     = require("gulp-concat")
+sass       = require("gulp-ruby-sass")
+minifyCss  = require("gulp-minify-css")
+rename     = require("gulp-rename")
+coffee     = require("gulp-coffee")
+sourcemaps = require("gulp-sourcemaps")
+jade       = require("gulp-jade")
+notify     = require("gulp-notify")
+addsrc     = require('gulp-add-src')
+sh         = require("shelljs")
+bower      = require("bower")
 
 paths =
-  sass: ["./scss/**/*.scss"]
+  sass:
+    source: ["sass/**/*.sass"]
+    dest: './www/css'
 
 gulp.task "default", ["sass"]
 
 gulp.task "sass", (done) ->
-  gulp.src("./scss/ionic.app.scss")
+  gulp.src(paths.sass.source)
       .pipe(sass())
-      .pipe(gulp.dest("./www/css/"))
+      .on("error", notify.onError("Error: <%= error.message %>"))
+      .pipe(gulp.dest(paths.sass.dest))
       .pipe(minifyCss(keepSpecialComments: 0))
       .pipe(rename(extname: ".min.css"))
-      .pipe(gulp.dest("./www/css/"))
-      .on("end", done)
+      .pipe(gulp.dest(paths.sass.dest))
+      .pipe(notify(message: ".css files updated"))
 
 gulp.task "watch", ->
   gulp.watch(paths.sass, ["sass"])
