@@ -11,14 +11,14 @@ A basic sidemenu example using:
 Install ionic:
 
 ```bash
-npm install -g ionic gulp
+npm install -g ionic
 ```
 
 Clone (or fork) this repo:
 
 ```bash
 git clone https://github.com/joshnuss/ionic-sidemenu-plus.git <your-project-name>
-cd <your-project-name>
+cd <your-project-name> && npm install
 ```
 
 Development mode:
