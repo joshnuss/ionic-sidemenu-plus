@@ -8,20 +8,20 @@ A basic sidemenu example using:
 
 ## Instructions
 
-Install ionic:
+### Install ionic
 
 ```bash
 npm install -g ionic
 ```
 
-Clone (or fork) this repo:
+### Clone (or fork) this repo
 
 ```bash
 git clone https://github.com/joshnuss/ionic-sidemenu-plus.git <your-project-name>
 cd <your-project-name> && npm install
 ```
 
-Development mode:
+### Development Mode
 
 Run gulp and ionic server
 
@@ -30,7 +30,7 @@ gulp watch
 ionic serve
 ```
 
-Test on device:
+### Test on Device
 
 ```bash
 # for android
@@ -40,7 +40,7 @@ ionic run android --device
 ionic run ios --device
 ```
 
-Build:
+### Build for Device
 
 ```bash
 ionic build android
