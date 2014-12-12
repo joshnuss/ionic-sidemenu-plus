@@ -30,7 +30,10 @@ gulp.task "sass", (done) ->
       .pipe(notify(message: ".css files updated"))
 
 gulp.task "watch", ->
-  gulp.watch(paths.sass, ["sass"])
+  gulp.start("default")
+
+  gulp.watch paths.sass.source, ->
+    gulp.start("sass")
 
 gulp.task "install", ["git-check"], ->
   bower.commands.install()
