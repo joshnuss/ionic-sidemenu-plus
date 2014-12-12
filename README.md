@@ -47,7 +47,9 @@ ionic build android
 ionic build ios
 ```
 
-## by Joshua Nussbaum
+## Author
+
+### [Joshua Nussbaum](https://github.com/joshnuss)
 
 Software consultant available for hire. joshnuss at gmail.com
 
