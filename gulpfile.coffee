@@ -16,12 +16,18 @@ paths =
   sass:
     source: ["sass/**/*.sass"]
     dest: './www/css'
+  coffee:
+    source: ["scripts/**/*.coffee"]
+    target: "app.js"
+    dest: './www/js'
+  javascript:
+    includes: []
   templates:
     source: ["views/**/*.jade"]
     locals: {}
     dest: './www'
 
-gulp.task "default", ["sass", "templates"]
+gulp.task "default", ["sass", "coffee", "templates"]
 
 gulp.task "templates", ->
   gulp.src(paths.templates.source)
@@ -29,6 +35,17 @@ gulp.task "templates", ->
       .on("error", notify.onError("Error: <%= error.message %>"))
       .pipe(gulp.dest(paths.templates.dest))
       .pipe(notify(message: ".html files updated"))
+
+gulp.task "coffee", (done) ->
+  gulp.src(paths.coffee.source)
+      .pipe(sourcemaps.init())
+      .pipe(coffee())
+      .on("error", notify.onError("Error: <%= error.message %>"))
+      .pipe(addsrc.prepend(paths.javascript.includes))
+      .pipe(concat(paths.coffee.target))
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(paths.coffee.dest))
+      .pipe(notify(message: ".js files updated"))
 
 gulp.task "sass", (done) ->
   gulp.src(paths.sass.source)
@@ -45,6 +62,9 @@ gulp.task "watch", ->
 
   gulp.watch paths.sass.source, ->
     gulp.start("sass")
+
+  gulp.watch paths.coffee.source, ->
+    gulp.start("coffee")
 
   gulp.watch paths.templates.source, ->
     gulp.start("templates")
