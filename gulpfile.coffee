@@ -16,8 +16,19 @@ paths =
   sass:
     source: ["sass/**/*.sass"]
     dest: './www/css'
+  templates:
+    source: ["views/**/*.jade"]
+    locals: {}
+    dest: './www'
 
-gulp.task "default", ["sass"]
+gulp.task "default", ["sass", "templates"]
+
+gulp.task "templates", ->
+  gulp.src(paths.templates.source)
+      .pipe(jade(locals: paths.templates.locals))
+      .on("error", notify.onError("Error: <%= error.message %>"))
+      .pipe(gulp.dest(paths.templates.dest))
+      .pipe(notify(message: ".html files updated"))
 
 gulp.task "sass", (done) ->
   gulp.src(paths.sass.source)
@@ -34,6 +45,9 @@ gulp.task "watch", ->
 
   gulp.watch paths.sass.source, ->
     gulp.start("sass")
+
+  gulp.watch paths.templates.source, ->
+    gulp.start("templates")
 
 gulp.task "install", ["git-check"], ->
   bower.commands.install()
